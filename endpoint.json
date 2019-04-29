@@ -1,0 +1,64 @@
+{
+    "label": "FullContact",
+    "name": "fullcontact",
+    "apiVersion": "v1",
+    "internal": false,
+    "configurationType": "GLOBAL",
+    "deployment": {
+        "profiles":[
+            {
+                "name": "default",
+                "label": "Default",
+                "memory": 256,
+                "description": "Default configuration"
+            }
+        ],
+        "allowMultipleInstances": true
+    },
+    "icon48": "https://storage.googleapis.com/static.slingrs.io/platform/endpoints/fullcontact.png",
+    "configurationHelpUrl": "/endpoints_fullcontact.html#configuration",
+    "status": "ACTIVE",
+    "stores": [],
+    "events": [
+        {
+            "label": "Webhook",
+            "name": "webhook",
+            "description": "Event triggered when FullContact returns information about a request."
+        }
+    ],
+    "functions": [
+        {
+            "label": "GET",
+            "name": "_get",
+            "callbacks": [
+                {
+                    "name": "webhook",
+                    "maxWaitingTime": 60000,
+                    "maxExpectedResponses": 1
+                }
+            ]
+        },
+        {
+            "label": "POST",
+            "name": "_post",
+            "callbacks": [
+                {
+                    "name": "webhook",
+                    "maxWaitingTime": 60000,
+                    "maxExpectedResponses": 1
+                }
+            ]
+        }
+    ],
+    "scripts":[
+        "functions.js"
+    ],
+    "configuration":[
+        {
+            "name": "apiKey",
+            "label": "API key",
+            "type": "text",
+            "required": true
+        }
+    ]
+}
